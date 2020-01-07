@@ -6,7 +6,7 @@
             <v-flex xs12>
                     <v-carousel>
                         <v-carousel-item
-                            v-for="item in ads"
+                            v-for="item in promoAds"
                             :key="item.id"
                             :src="item.imageSrc">
                             <div class="car-link">
@@ -73,28 +73,14 @@
         name: "Home",
         data() {
             return {
-                ads: [
-                    {
-                        title: 'first Ad',
-                        description: 'Hello',
-                        promo: false,
-                        imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-                        id: '1'
-                    },
-                    {
-                        title: 'second Ad',
-                        description: 'this is a second',
-                        promo: true,
-                        imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-                        id: '2'
-                    },
-                    {
-                        title: 'third Ad',
-                        description: 'And it is third',
-                        promo: true,
-                        imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-                        id: '3'},
-                ]
+            }
+        },
+        computed: {
+            promoAds() {
+                return this.$store.getters.promoAds
+            },
+            ads() {
+                return this.$store.getters.ads
             }
         }
     }

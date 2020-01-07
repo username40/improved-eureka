@@ -3,7 +3,7 @@
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
                 <h1 class="text--secondary mb-3">My ads</h1>
-                <v-card v-for="item in ads" :key="item.id" class="elevation-10 mb-5">
+                <v-card v-for="item in myAds" :key="item.id" class="elevation-10 mb-5">
                     <v-layout>
                         <v-flex xs4>
                                 <v-img :src="item.imageSrc" height="175px"/>
@@ -30,22 +30,12 @@
         name: "Adlist",
         data() {
             return {
-                ads: [
-                    {
-                        title: 'first Ad',
-                        description: 'Hello',
-                        promo: false,
-                        imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-                        id: '1'
-                    },
-                    {
-                        title: 'second Ad',
-                        description: 'this is a second',
-                        promo: true,
-                        imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-                        id: '2'
-                    }
-                ]
+
+            }
+        },
+        computed: {
+            myAds() {
+                return this.$store.getters.myAds
             }
         }
     }
