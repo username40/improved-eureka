@@ -95,7 +95,7 @@
                 if(this.$refs.form.validate()) {
                     const user = {
                         email: this.email,
-                        pasword: this.password
+                        password: this.password
                     }
                     // eslint-disable-next-line no-console
                     console.log(user)
