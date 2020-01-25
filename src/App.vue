@@ -38,6 +38,25 @@
         <v-content>
             <router-view></router-view>
         </v-content>
+        <template v-if="error">
+            <v-snackbar
+                    @input="closeError"
+                    :value="true"
+                    :timeout="5000"
+                    color="error"
+                    :multi-line="true"
+            >
+                {{ error }}
+                <v-btn
+                        dark
+                        text
+                        @click.native="closeError"
+                >
+                    Close
+                </v-btn>
+            </v-snackbar>
+        </template>
+
     </v-app>
 </template>
 
@@ -55,6 +74,16 @@
                     {title: 'New ad', icon: 'mdi-note-plus', url: '/new'},
                     {title: 'My ads', icon: 'mdi-format-list-bulleted', url: '/list'},
                 ]
+            }
+        },
+        methods: {
+            closeError() {
+                this.$store.dispatch('clearError')
+            }
+        },
+        computed: {
+            error() {
+                return this.$store.getters.error
             }
         }
     };
