@@ -56,7 +56,8 @@
                     <v-card-actions>
                         <v-spacer/>
                         <v-btn
-                                :disabled="!valid"
+                                :disabled="!valid || loading"
+                                :loading="loading"
                                 color="primary"
                                 @click="onSubmit">Registration
                         </v-btn>
@@ -90,16 +91,24 @@
                 ]
             }
         },
+        computed: {
+            loading() {
+                return this.$store.getters.loading
+            }
+        },
         methods: {
             onSubmit() {
                 if(this.$refs.form.validate()) {
                     const user = {
                         email: this.email,
-                        pasword: this.password
+                        password: this.password
                     }
-                    // eslint-disable-next-line no-console
-                    console.log(user)
-
+                    this.$store.dispatch('registerUser', user)
+                        .then(() => {
+                            this.$router.push('/')
+                        })
+                        // eslint-disable-next-line no-console
+                        .catch(err => console.log(err))
                 }
             }
         }
