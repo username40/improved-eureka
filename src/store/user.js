@@ -29,11 +29,11 @@ export default {
                 throw error
             }
         },
-        async loginUser({commit}, {email, password}) {
+        loginUser({commit}, {email, password}) {
             commit('clearError')
             commit('setLoading', true)
             try {
-                const user = await fb.auth().signInWithEmailAndPassword(email, password)
+                const user = fb.auth().signInWithEmailAndPassword(email, password)
                 commit('setUser', new User(user.uid))
                 commit('setLoading', false)
             } catch(error) {
