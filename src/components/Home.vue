@@ -52,13 +52,7 @@
                             >
                                 Open
                             </v-btn>
-
-                            <v-btn
-                                    raised
-                                    class="primary"
-                            >
-                                Buy
-                            </v-btn>
+                            <app-buy-modal :ad="ad"/>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -84,10 +78,7 @@
 <script>
     export default {
         name: "Home",
-        data() {
-            return {
-            }
-        },
+        props: ['ad'],
         computed: {
             promoAds() {
                 return this.$store.getters.promoAds
