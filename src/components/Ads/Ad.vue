@@ -11,6 +11,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <app-edit-ad-modal :ad="ad" v-if="isOwner"></app-edit-ad-modal>
+
                         <app-buy-modal :ad="ad"></app-buy-modal>
                     </v-card-actions>
                 </v-card>
@@ -29,14 +30,29 @@
 
 <script>
     import EditAdModal from "./EditAdModal";
+    import store from "../../store";
 
     export default {
         name: "Ad",
+        data() {
+            return {
+            }
+        },
         components: {
             appEditAdModal: EditAdModal
         },
         props: ['id'],
         computed: {
+            isAuth() {
+                if(!store.getters.user) {
+                    // eslint-disable-next-line no-console
+                    console.log(111)
+                    return false
+                }
+                else {
+                    return true
+                }
+            },
             ad() {
                 const id = this.id
                 return this.$store.getters.adById(id)
@@ -45,7 +61,12 @@
                 return this.$store.getters.loading
             },
             isOwner() {
-                return this.ad.ownerId === this.$store.getters.user.id
+                if(!store.getters.user) {
+                    return false
+                } else {
+                    return this.ad.ownerId === this.$store.getters.user.id
+                }
+
             }
         }
     }

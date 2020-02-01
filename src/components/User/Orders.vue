@@ -39,6 +39,7 @@
                     </v-list-item-group>
                 </v-list>
             </v-flex>
+            <v-flex v-else>You have no orders</v-flex>
         </v-layout>
     </v-container>
 </template>
