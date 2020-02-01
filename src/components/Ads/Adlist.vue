@@ -22,6 +22,19 @@
                 </v-card>
             </v-flex>
         </v-layout>
+<!--        <v-layout v-else-if="!loading && myAds.length === 0">-->
+<!--            <v-flex xs12 class="text-center">-->
+<!--                <h1 class="text-primary">You have no ads</h1>-->
+<!--            </v-flex>-->
+<!--        </v-layout>-->
+<!--        <v-layout v-else>-->
+<!--            <v-progress-circular-->
+<!--                    :size="100"-->
+<!--                    :width="4"-->
+<!--                    color="primary"-->
+<!--                    indeterminate-->
+<!--            ></v-progress-circular>-->
+<!--        </v-layout>-->
     </v-container>
 </template>
 
@@ -36,6 +49,9 @@
         computed: {
             myAds() {
                 return this.$store.getters.myAds
+            },
+            loading() {
+                return this.$store.getters.loading
             }
         }
     }

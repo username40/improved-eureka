@@ -83,7 +83,6 @@
         data() {
             return {
                 drawer: false,
-                // nand: false,
             }
         },
         methods: {

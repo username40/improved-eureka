@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
+import BuyModalComponent from '@/components/shared/BuyModal'
 import store from './store/index'
 import router from './router'
 import * as fb from 'firebase'
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
+Vue.component('app-buy-modal', BuyModalComponent)
+
 
 new Vue({
   router,
@@ -26,5 +29,7 @@ new Vue({
     fb.auth().onAuthStateChanged(user => {
       this.$store.dispatch('autoLoginUser', user)
     })
+
+    this.$store.dispatch('fetchAds')
   }
 }).$mount('#app')
